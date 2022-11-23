@@ -54,6 +54,20 @@ function config_pipeline_sno() {
         export DB2_BACKUP_STORAGE_CLASS=gp2
       if [[ -z DB2_TEMP_STORAGE_CLASS ]]; then
         export DB2_TEMP_STORAGE_CLASS=gp2
+        
+      if [[ -z PROMETHEUS_ALERTMGR_STORAGE_CLASS ]]; then
+        export PROMETHEUS_ALERTMGR_STORAGE_CLASS=gp2
+      if [[ -z PROMETHEUS_STORAGE_CLASS ]]; then
+        export PROMETHEUS_STORAGE_CLASS=gp2
+      if [[ -z SLS_STORAGE_CLASS ]]; then     
+        export SLS_STORAGE_CLASS=gp2
+      if [[ -z MONGODB_STORAGE_CLASS ]]; then
+        export MONGODB_STORAGE_CLASS=go2
+      if [[ -z UDS_STORAGE_CLASS ]]; then
+        export UDS_STORAGE_CLASS=gp2
+      if [[ -z GRAFANA_INSTANCE_STORAGE_CLASS ]]; then
+        export GRAFANA_INSTANCE_STORAGE_CLASS=gp2
+      
 
     if [[ -z DB2_META_STORAGE_SIZE ]] then
       export DB2_META_STORAGE_SIZE=10Gi
