@@ -10,13 +10,13 @@ function config_pipeline_sno() {
     # SNO Mode -- Set environment variables MONGODB_REPLICAS=1
     echo_h2 "Info: SNO_MODE was not detected."
     export MONGODB_REPLICAS=1
-    export MONGODB_CPU_REQUESTS=300m
+    export MONGODB_CPU_REQUESTS=500m
     export MAS_APP_SETTINGS_AIO_FLAG=false
     #export DB2_CPU_REQUESTS=1000m ##default value is 2000m
-    export DB2_CPU_REQUESTS=500m ##default value is 2000m
+    export DB2_CPU_REQUESTS=300m ##default value is 2000m
     #export DB2_CPU_LIMITS=2000m ## default value is 4000m
-    export DB2_META_STORAGE_ACCESSMODE=ReadWriteOnce
-    export DB2_BACKUP_STORAGE_ACCESSMODE=ReadWriteOnce
+    #export DB2_META_STORAGE_ACCESSMODE=ReadWriteOnce
+    #export DB2_BACKUP_STORAGE_ACCESSMODE=ReadWriteOnce
     #export DB2_META_STORAGE_SIZE=10Gi
     #export DB2_BACKUP_STORAGE_SIZE=10Gi
     #export DB2_LOGS_STORAGESIZE=10Gi
@@ -40,8 +40,14 @@ function config_pipeline_sno() {
     export DB2_META_STORAGE_ACCESSMODE=ReadWriteOnce
     export DB2_BACKUP_STORAGE_ACCESSMODE=ReadWriteOnce
     export DB2_DATA_STORAGE_ACCESSMODE=ReadWriteOnce
-    export DB2_LOGS_STORAGE_ACCESSMODE=ReadWriteOnce     
-    export DB2_NAMESPACE=db2u
+    export DB2_LOGS_STORAGE_ACCESSMODE=ReadWriteOnce  
+    export DB2_TEMP_STORAGE_ACCESSMODE=ReadWriteOnce
+
+    if [[ -z  DB2_NAMESPACE ]] then
+      export DB2_NAMESPACE=db2u
+    
+     if [[ -z  DB2_INSTANCE_NAME ]] then
+      export DB2_INSTANCE_NAME = db2-manage
 
     if [[ "$ STORAGECLASS_GP2" == "true" ]]; then 
       if [[ -z DB2_DATA_STORAGE_CLASS ]]; then
@@ -54,7 +60,6 @@ function config_pipeline_sno() {
         export DB2_BACKUP_STORAGE_CLASS=gp2
       if [[ -z DB2_TEMP_STORAGE_CLASS ]]; then
         export DB2_TEMP_STORAGE_CLASS=gp2
-
       if [[ -z PROMETHEUS_ALERTMGR_STORAGE_CLASS ]]; then
         export PROMETHEUS_ALERTMGR_STORAGE_CLASS=gp2
       if [[ -z PROMETHEUS_STORAGE_CLASS ]]; then
