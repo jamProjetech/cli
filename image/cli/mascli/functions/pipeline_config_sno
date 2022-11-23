@@ -46,7 +46,7 @@ function config_pipeline_sno() {
     if [[ -z  DB2_NAMESPACE ]] then
       export DB2_NAMESPACE=db2u
     
-     if [[ -z  DB2_INSTANCE_NAME ]] then
+    if [[ -z  DB2_INSTANCE_NAME ]] then
       export DB2_INSTANCE_NAME = db2-manage
 
     if [[ "$ STORAGECLASS_GP2" == "true" ]]; then 
