@@ -55,7 +55,7 @@ function pipeline_config() {
     # sarika
 
     echo -e "${COLOR_YELLOW}MAS Version:"
-    echo "  1. 8.9 (SNO ONLY)"
+    echo "  1. 8.9 (Single Node OpenShift enabled)"
     echo "  2. 8.8"
     echo "  3. 8.7"
     echo "  4. 8.6"
