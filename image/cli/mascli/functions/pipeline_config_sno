@@ -40,46 +40,46 @@ function config_pipeline_sno() {
     export DB2_LOGS_STORAGE_ACCESSMODE=ReadWriteOnce  
     export DB2_TEMP_STORAGE_ACCESSMODE=ReadWriteOnce
 
-    if [[ -z  DB2_NAMESPACE ]]; then
+    if [[ -z "$DB2_NAMESPACE" ]]; then
       export DB2_NAMESPACE=db2u
     
-    if [[ -z  DB2_INSTANCE_NAME ]]; then
+    if [[ -z "$DB2_INSTANCE_NAME" ]]; then
       export DB2_INSTANCE_NAME = db2-manage
 
-    if [[ "$ STORAGECLASS_GP2" == "true" ]]; then 
-      if [[ -z DB2_DATA_STORAGE_CLASS ]]; then
+    if [[ "$STORAGECLASS_GP2" == "true" ]]; then 
+      if [[ -z "$DB2_DATA_STORAGE_CLASS" ]]; then
         export DB2_DATA_STORAGE_CLASS=gp2
-      if [[ -z DB2_LOGS_STORAGE_CLASS ]]; then 
+      if [[ -z "$DB2_LOGS_STORAGE_CLASS" ]]; then 
         export DB2_LOGS_STORAGE_CLASS=gp2
-      if [[ -z DB2_META_STORAGE_CLASS ]]; then
+      if [[ -z "$DB2_META_STORAGE_CLASS" ]]; then
         export DB2_META_STORAGE_CLASS=gp2
-      if [[ -z DB2_BACKUP_STORAGE_CLASS ]]; then  
+      if [[ -z "$DB2_BACKUP_STORAGE_CLASS" ]]; then  
         export DB2_BACKUP_STORAGE_CLASS=gp2
-      if [[ -z DB2_TEMP_STORAGE_CLASS ]]; then
+      if [[ -z "$DB2_TEMP_STORAGE_CLASS" ]]; then
         export DB2_TEMP_STORAGE_CLASS=gp2
-      if [[ -z PROMETHEUS_ALERTMGR_STORAGE_CLASS ]]; then
+      if [[ -z "$PROMETHEUS_ALERTMGR_STORAGE_CLASS" ]]; then
         export PROMETHEUS_ALERTMGR_STORAGE_CLASS=gp2
-      if [[ -z PROMETHEUS_STORAGE_CLASS ]]; then
+      if [[ -z "$PROMETHEUS_STORAGE_CLASS" ]]; then
         export PROMETHEUS_STORAGE_CLASS=gp2
-      if [[ -z SLS_STORAGE_CLASS ]]; then     
+      if [[ -z "$SLS_STORAGE_CLASS" ]]; then     
         export SLS_STORAGE_CLASS=gp2
-      if [[ -z MONGODB_STORAGE_CLASS ]]; then
+      if [[ -z "$MONGODB_STORAGE_CLASS" ]]; then
         export MONGODB_STORAGE_CLASS=gp2
-      if [[ -z UDS_STORAGE_CLASS ]]; then
+      if [[ -z "$UDS_STORAGE_CLASS" ]]; then
         export UDS_STORAGE_CLASS=gp2
-      if [[ -z GRAFANA_INSTANCE_STORAGE_CLASS ]]; then
+      if [[ -z "$GRAFANA_INSTANCE_STORAGE_CLASS" ]]; then
         export GRAFANA_INSTANCE_STORAGE_CLASS=gp2
       
 
-    if [[ -z DB2_META_STORAGE_SIZE ]]; then
+    if [[ -z "$DB2_META_STORAGE_SIZE" ]]; then
       export DB2_META_STORAGE_SIZE=10Gi
-    if [[ -z DB2_BACKUP_STORAGE_SIZE ]]; then  
+    if [[ -z "$DB2_BACKUP_STORAGE_SIZE" ]]; then  
       export DB2_BACKUP_STORAGE_SIZE=10Gi
-    if [[ -z DB2_LOGS_STORAGESIZE ]]; then
+    if [[ -z "$DB2_LOGS_STORAGESIZE" ]]; then
       export DB2_LOGS_STORAGESIZE=10Gi
-    if [[ -z DB2_TEMP_STORAGE_SIZE]];  then
+    if [[ -z "$DB2_TEMP_STORAGE_SIZE" ]];  then
       export DB2_TEMP_STORAGE_SIZE=10Gi
-    if [[ -z DB2_DATA_STORAGE_SIZE ]]; then
+    if [[ -z "$DB2_DATA_STORAGE_SIZE" ]]; then
       export DB2_DATA_STORAGE_SIZE=20Gi
 
     prompt_for_confirm_default_yes "Do you want manage demodata to be loaded or not " MAS_APP_SETTINGS_DEMODATA && export MAS_APP_SETTINGS_DEMODATA
