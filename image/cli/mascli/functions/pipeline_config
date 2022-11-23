@@ -52,7 +52,7 @@ function pipeline_config() {
       esac
     fi
 
-    #sarika
+    # sarika
 
     echo -e "${COLOR_YELLOW}MAS Version:"
     echo "  1. 8.9 (SNO ONLY)"

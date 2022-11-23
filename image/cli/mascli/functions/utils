@@ -226,7 +226,7 @@ function detect_sno() {
   fi
 }
 
-#sarika
+# sarika
 function detect_storageclass() {
   gp2_storageclass=$(oc get storageclass gp2 | wc -l | xargs)
   if [[ "$gp2_storageclass" == "2" ]]; then
