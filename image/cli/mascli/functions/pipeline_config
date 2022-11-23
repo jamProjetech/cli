@@ -53,21 +53,26 @@ function pipeline_config() {
     fi
 
     echo -e "${COLOR_YELLOW}MAS Version:"
-    echo "  1. 8.8"
-    echo "  2. 8.7"
-    echo "  3. 8.6"
+    echo "  1. 8.9 (SNO ONLY)"
+    echo "  2. 8.8"
+    echo "  3. 8.7"
+    echo "  4. 8.6"
     prompt_for_input "Select Subscription Channel" MAS_CHANNEL_SELECTION "1"
 
     case $MAS_CHANNEL_SELECTION in
-      1|8.8|8.8.x)
+      1|8.9|8.9.x)
+        MAS_CHANNEL=8.9.x
+        ;;
+        
+      2|8.8|8.8.x)
         MAS_CHANNEL=8.8.x
         ;;
 
-      2|8.7|8.7.x)
+      3|8.7|8.7.x)
         MAS_CHANNEL=8.7.x
         ;;
 
-      3|8.6|8.6.x)
+      4|8.6|8.6.x)
         MAS_CHANNEL=8.6.x
         ;;
 
