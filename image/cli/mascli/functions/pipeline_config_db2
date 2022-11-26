@@ -11,7 +11,7 @@ function config_pipeline_storage_db2_size() {
         DB2_DATA_STORAGE_SIZE=20Gi
 
         echo
-        echo_h2 "6a. DB2 Storage size, in Gi(Gigabytes)"
+        echo_h2 "6b. DB2 Storage size, in Gi(Gigabytes)"
         prompt_for_input "Size of metadata persistent volume" DB2_META_STORAGE_SIZE 
         prompt_for_input "Size of data persistent volume" DB2_DATA_STORAGE_SIZE 
         prompt_for_input "Size of backup persistent volume" DB2_BACKUP_STORAGE_SIZE
