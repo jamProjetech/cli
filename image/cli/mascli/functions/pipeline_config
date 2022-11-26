@@ -128,8 +128,11 @@ function pipeline_config() {
   config_pipeline_sno
   config_pipeline_dns
   config_pipeline_applications
-  config_pipeline_storage_classes
-  config_pipeline_storage_classes_sno
+  if [[ "$SNO_MODE" == "true" ]]; then
+    config_pipeline_storage_classes_sno
+  else
+    config_pipeline_storage_classes
+  fi
   config_pipeline_storage_db2_size
 
   echo ""
