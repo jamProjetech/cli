@@ -54,8 +54,6 @@ function pipeline_config() {
       esac
     fi
 
-    # sarika
-
     if [[ "$SNO_MODE" == "true" ]]; then
       echo -e "${COLOR_YELLOW}MAS Version:"
       echo "  1. 8.9"

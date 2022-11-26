@@ -61,7 +61,6 @@ function channel_select_safety() {
   true
 }
 
-# sarika
 function channel_select_manage() {
   case $MAS_CHANNEL in
     8.9.x)
