@@ -34,6 +34,8 @@ spec:
       value: '$DB2_CPU_REQUESTS'
     - name: db2_cpu_limits
       value: '$DB2_CPU_LIMITS'
+    - name: db2_meta_storage_size
+      value: '$DB2_META_STORAGE_SIZE'
     
     # Additional Mongo DB parameters
     - name: mongodb_replicas
