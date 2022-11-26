@@ -130,6 +130,7 @@ function pipeline_config() {
   config_pipeline_dns
   config_pipeline_applications
   config_pipeline_storage_classes
+  config_pipeline_storage_db2_size
 
   echo ""
   if [[ "$DEV_MODE" == "true" && -z "$AIRGAP_MODE" ]]; then
@@ -195,5 +196,4 @@ function pipeline_config() {
   prompt_for_input "UDS Contact First Name" UDS_CONTACT_FIRSTNAME
   prompt_for_input "UDS Contact Last Name" UDS_CONTACT_LASTNAME
 
-  db2_select_storage_size
 }

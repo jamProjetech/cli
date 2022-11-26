@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-function db2_select_storage_size() {
+function config_pipeline_storage_db2_size() {
     if [[ "$SNO_MODE" == "true" ]]; then
     
         DB2_META_STORAGE_SIZE=10Gi 
@@ -11,7 +11,7 @@ function db2_select_storage_size() {
         DB2_DATA_STORAGE_SIZE=20Gi
 
         echo
-        echo_h2 "10. DB2 Storage size, in Gi(Gigabytes)"
+        echo_h2 "6a. DB2 Storage size, in Gi(Gigabytes)"
         prompt_for_input "Size of metadata persistent volume" DB2_META_STORAGE_SIZE
         prompt_for_input "Size of data persistent volume" DB2_DATA_STORAGE_SIZE
         prompt_for_input "Size of backup persistent volume" DB2_BACKUP_STORAGE_SIZE
