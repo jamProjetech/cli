@@ -12,17 +12,11 @@ function config_pipeline_storage_db2_size() {
 
         echo
         echo_h2 "6a. DB2 Storage size, in Gi(Gigabytes)"
-        prompt_for_input "Size of metadata persistent volume" DB2_META_STORAGE_SIZE
-        prompt_for_input "Size of data persistent volume" DB2_DATA_STORAGE_SIZE
-        prompt_for_input "Size of backup persistent volume" DB2_BACKUP_STORAGE_SIZE
-        prompt_for_input 'Size of transaction logs persistent volume' DB2_LOGS_STORAGE_SIZE
-        prompt_for_input 'Size of temporary persistent volume' DB2_TEMP_STORAGE_SIZE
+        prompt_for_input "Size of metadata persistent volume" DB2_META_STORAGE_SIZE && export DB2_META_STORAGE_SIZE
+        prompt_for_input "Size of data persistent volume" DB2_DATA_STORAGE_SIZE && export DB2_DATA_STORAGE_SIZE
+        prompt_for_input "Size of backup persistent volume" DB2_BACKUP_STORAGE_SIZE && export DB2_BACKUP_STORAGE_SIZE
+        prompt_for_input 'Size of transaction logs persistent volume' DB2_LOGS_STORAGE_SIZE && export DB2_LOGS_STORAGE_SIZE
+        prompt_for_input 'Size of temporary persistent volume' DB2_TEMP_STORAGE_SIZE && export DB2_TEMP_STORAGE_SIZE
 
-        export DB2_META_STORAGE_SIZE=$DB2_META_STORAGE_SIZE
-        export DB2_DATA_STORAGE_SIZE=$DB2_DATA_STORAGE_SIZE
-        export DB2_BACKUP_STORAGE_SIZE=$DB2_BACKUP_STORAGE_SIZE
-        export DB2_LOGS_STORAGE_SIZE=$DB2_LOGS_STORAGE_SIZE
-        export DB2_TEMP_STORAGE_SIZE=$DB2_TEMP_STORAGE_SIZE
-    
     fi
 }         

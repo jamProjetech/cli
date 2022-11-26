@@ -39,6 +39,18 @@ spec:
       - name: DB2_NAMESPACE
         value: $(params.db2_namespace)
 
+      - name: DB2_META_STORAGE_SIZE
+        value: $(params.db2_meta_storage_size)
+      - name: DB2_DATA_STORAGE_SIZE
+        value: $(params.db2_data_storage_size)
+      - name: DB2_BACKUP_STORAGE_SIZE
+        value: $(params.db2_backup_storage_size)
+      - name: DB2_LOGS_STORAGE_SIZE
+        value: $(params.db2_logs_storage_size)
+      - name: DB2_TEMP_STORAGE_SIZE
+        value: $(params.db2_temp_storage_size)
+      
+
       # Optional support built into the ansible-devops image
       # for saving task execution results to a MongoDb instance
       - name: MAS_INSTANCE_ID
