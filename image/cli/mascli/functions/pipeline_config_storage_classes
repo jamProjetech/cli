@@ -34,6 +34,10 @@
 # - cpd_service_storage_class [ibmc-file-gold-gid, ocs-storagecluster-cephfs, azurefiles-premium] / WD: [ibmc-block-gold, ocs-storagecluster-ceph-rbd, managed-premium]
 
 function config_pipeline_storage_classes() {
+  if [[ "$SNO_MODE" == "true" ]]; then
+    exit 0;
+  fi
+
   echo
   echo_h2 "6. Configure Storage Class Usage"
   echo "${TEXT_DIM}Maximo Application Suite and it's dependencies require storage classes that support ReadWriteOnce (RWO) and ReadWriteMany (RWX) access modes:"
