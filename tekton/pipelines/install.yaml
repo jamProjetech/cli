@@ -655,9 +655,9 @@ spec:
           values: [""]
         # If there is no RWX storage class available then we can't deploy Db2.
         # TODO: Test Db2 install using RWO storage only
-        - input: "$(params.storage_class_rwx)"
-          operator: notin
-          values: ["none"]
+        #- input: "$(params.storage_class_rwx)"
+        #  operator: notin
+        #  values: ["none"]
       taskRef:
         name: mas-devops-db2
         kind: Task
