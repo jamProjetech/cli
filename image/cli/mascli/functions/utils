@@ -226,12 +226,3 @@ function detect_sno() {
   fi
 }
 
-# sarika
-function detect_storageclass() {
-  gp2_storageclass=$(oc get storageclass gp2 | wc -l | xargs)
-  if [[ "$gp2_storageclass" == "2" ]]; then
-    export STORAGECLASS_GP2=true
-  else
-    unset STORAGECLASS_GP2
-  fi
-}
