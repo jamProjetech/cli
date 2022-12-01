@@ -115,8 +115,7 @@ spec:
       type: string
       description: Size of backup persistent volume
       default: ""
-
-
+   
     # Dependencies - Mongo
     - name: mongodb_storage_class
       type: string
@@ -604,11 +603,11 @@ spec:
     - name: db2
       params:
         - name: db2_meta_storage_class
-          value: $(params.storage_class_rwo)
+          value: $(params.storage_class_rwx)
         - name: db2_data_storage_class
           value: $(params.storage_class_rwo)
         - name: db2_backup_storage_class
-          value: $(params.storage_class_rwo)
+          value: $(params.storage_class_rwx)
         - name: db2_logs_storage_class
           value: $(params.storage_class_rwo)
         - name: db2_temp_storage_class
@@ -655,9 +654,9 @@ spec:
           values: [""]
         # If there is no RWX storage class available then we can't deploy Db2.
         # TODO: Test Db2 install using RWO storage only
-        #- input: "$(params.storage_class_rwx)"
-        #  operator: notin
-        #  values: ["none"]
+        - input: "$(params.storage_class_rwx)"
+          operator: notin
+          values: ["none"]
       taskRef:
         name: mas-devops-db2
         kind: Task
