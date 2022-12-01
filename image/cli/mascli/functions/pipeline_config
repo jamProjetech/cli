@@ -14,6 +14,7 @@ function pipeline_config() {
   if [[ ! -z "$1" ]]; then
     MAS_INSTANCE_ID=$1
   fi
+  
   prompt_for_input "MAS Instance ID" MAS_INSTANCE_ID
 
   if [[ -n "$DEV_MODE" ]]; then
