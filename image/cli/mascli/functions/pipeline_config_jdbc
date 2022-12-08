@@ -9,9 +9,9 @@ function config_pipeline_jdbc() {
   if [[ "$CONFIGURE_EXTERNAL_DATABASE" == "true" ]]; then
     echo -e "${COLOR_GREEN}External Data Base was selected. Please give the following details to configure the jdbc${COLOR_RESET}"
     prompt_for_input "DB Instance ID" DB_INSTANCE_ID && export DB_INSTANCE_ID
-    prompt_for_input "MAS JDBC User" MAS_JDBC_USER && export MAS_JDBC_USER
-    prompt_for_input "MAS JDBC Password" MAS_JDBC_PASSWORD && export MAS_JDBC_PASSWORD
-    prompt_for_input "MAS MAS_JDBC Cert Local File" MAS_JDBC_CERT_LOCAL_FILE && export MAS_JDBC_CERT_LOCAL_FILE
+    prompt_for_input "JDBC User Name" MAS_JDBC_USER && export MAS_JDBC_USER
+    prompt_for_input "JDBC Password" MAS_JDBC_PASSWORD && export MAS_JDBC_PASSWORD
+    prompt_for_input "JDBC Cert Local File" MAS_JDBC_CERT_LOCAL_FILE && export MAS_JDBC_CERT_LOCAL_FILE
   fi
 }
 
