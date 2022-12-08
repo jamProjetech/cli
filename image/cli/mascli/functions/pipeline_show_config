@@ -113,6 +113,20 @@ function pipeline_show_config() {
   fi
 
   reset_colors
+  echo "${TEXT_DIM}"
+  echo_h2 "Storage Class Configuration" "    "
+  echo_reset_dim "Storage Class Provider ... ${COLOR_MAGENTA}${CONFIGURE_EXTERNAL_DATABASE}"
+  if [[ "$CONFIGURE_EXTERNAL_DATABASE" == "true" ]]; then
+    echo_reset_dim "DB Instance ID ............ ${COLOR_MAGENTA}${DB_INSTANCE_ID}"
+    echo_reset_dim "MAS JDBC User ............ ${COLOR_MAGENTA}${MAS_JDBC_USER}"
+    echo_reset_dim "MAS MAS_JDBC Cert Local File ............ ${COLOR_MAGENTA}${MAS_JDBC_CERT_LOCAL_FILE}"
+    echo_reset_dim "MAS_WORKSPACE_ID ............ ${COLOR_MAGENTA}${MAS_WORKSPACE_ID}"
+    echo_reset_dim "MAS_CONFIG_SCOPE ............ ${COLOR_MAGENTA}${MAS_CONFIG_SCOPE}"
+    echo_reset_dim "MAS_CONFIG_DIR ............ ${COLOR_MAGENTA}${MAS_CONFIG_DIR}"
+    echo_reset_dim "MAS_APP_ID ............ ${COLOR_MAGENTA}${MAS_APP_ID}"
+  fi
+
+  reset_colors
   echo "${TEXT_RESET}"
   prompt_for_confirm "Proceed with these settings" || exit 0
 

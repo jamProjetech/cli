@@ -1,0 +1,17 @@
+#!/bin/bash
+
+function config_pipeline_jdbc() {
+  echo
+  echo_h2 "Configure JDBC"
+  echo "${TEXT_DIM}Maximo Application Suite requires a database. By default it provisions a DB2 database. However if you have an external database, we can configure it."
+  echo ""
+  reset_colors
+  if [[ "$CONFIGURE_EXTERNAL_DATABASE" == "true" ]]; then
+    echo -e "${COLOR_GREEN}External Data Base was selected. Please give the following details to configure the jdbc${COLOR_RESET}"
+    prompt_for_input "DB Instance ID" DB_INSTANCE_ID && export DB_INSTANCE_ID
+    prompt_for_input "MAS JDBC User" MAS_JDBC_USER && export MAS_JDBC_USER
+    prompt_for_input "MAS JDBC Password" MAS_JDBC_PASSWORD && export MAS_JDBC_PASSWORD
+    prompt_for_input "MAS MAS_JDBC Cert Local File" MAS_JDBC_CERT_LOCAL_FILE && export MAS_JDBC_CERT_LOCAL_FILE
+  fi
+}
+
