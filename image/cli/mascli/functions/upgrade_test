@@ -123,7 +123,7 @@ function upgrade_test() {
         EXISTING_MAS_CHANNEL=$(oc get subs ibm-mas-operator -n mas-$MAS_INSTANCE_ID-core --output jsonpath='{.spec.channel}')
         if [[ -z "$EXISTING_MAS_CHANNEL" ]]; then
             echo_h2 "Selected instance $MAS_INSTANCE_ID does not exist."
-            exit 0
+            exit 1
         fi
     fi
 
@@ -137,30 +137,31 @@ function upgrade_test() {
         UPGRADED_MAS_CHANNEL="upgrade_path_${RESULT}"
 
         echo
-        prompt_for_input "Enter MAS channel" INPUT_MAS_CHANNEL
+        prompt_for_input "Enter Target MAS channel" INPUT_MAS_CHANNEL
         if [[ $INPUT_MAS_CHANNEL != "${!UPGRADED_MAS_CHANNEL}" ]]; then
             echo "Mas channel can not be upgraded with ${INPUT_MAS_CHANNEL} .It can only be upgraded with:"
             echo "  FROM: TO"
             echo "$(sed -e '1,/upgrade_path/ d' $FILE)"
-            exit 0
+            exit 1
         fi
         echo "upgrading with mas_channel: ${!UPGRADED_MAS_CHANNEL}"
         if [[ -z "${!UPGRADED_MAS_CHANNEL}" ]]; then
             echo "Upgrade path for mas channel: ${EXISTING_MAS_CHANNEL} is not available "
-            exit 0
+            exit 1
         else
             export MAS_CHANNEL="${!UPGRADED_MAS_CHANNEL}"
 
         fi
 
     fi
-
+    echo
     EXISTING_UPGRADE_PIPLINE=$(oc -n mas-$MAS_INSTANCE_ID-pipelines get pipelines mas-upgrade -o jsonpath='{.metadata.name}')
 
     if [[ -z "$EXISTING_UPGRADE_PIPLINE" ]]; then
         echo_h2 "mas-upgrade pipeline does not exist in mas instance $MAS_INSTANCE_ID."
-        exit 0
+        exit 1
     fi
+    echo
     echo_h2 "Launch Upgrade with ${MAS_CHANNEL}"
 
     #   # Create namespace, install MAS Tekton definitions, configure RBAC
