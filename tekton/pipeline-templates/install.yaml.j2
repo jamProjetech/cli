@@ -243,6 +243,7 @@ spec:
     {{ lookup('template', 'taskdefs/apps/manage-app.yml.j2') | indent(4) }}
       runAfter:
         - suite-db2-setup-for-manage
+        - suite-gencfg-jdbc-for-manage
 
     # 9.3 Configure Manage workspace
     {{ lookup('template', 'taskdefs/apps/manage-workspace.yml.j2') | indent(4) }}

@@ -122,6 +122,22 @@ function pipeline_show_config() {
     echo_reset_dim "DB2_TEMP_STORAGE_SIZE .............. ${COLOR_MAGENTA}${DB2_TEMP_STORAGE_SIZE}"
     echo_reset_dim "DB2_LOGS_STORAGE_SIZE .............. ${COLOR_MAGENTA}${DB2_LOGS_STORAGE_SIZE}"
   fi
+
+  #JDBC
+  if [[ "$CONFIGURE_EXTERNAL_DATABASE" == "true" ]]; then
+    reset_colors
+    echo "${TEXT_DIM}"
+    echo_h2 "JDBC Configuration" 
+    echo_reset_dim "MAS_JDBC_USER ............................ ${COLOR_MAGENTA}${MAS_JDBC_USER}"
+    echo_reset_dim "MAS_JDBC_URL ............................. ${COLOR_MAGENTA}${MAS_JDBC_URL}"
+    echo_reset_dim "MAS_JDBC_URL ............................. ${COLOR_MAGENTA}${MAS_JDBC_URL}"
+    echo_reset_dim "MAS_APP_SETTINGS_DB2_SCHEMA .............. ${COLOR_MAGENTA}${MAS_APP_SETTINGS_DB2_SCHEMA}"
+    echo_reset_dim "MAS_APP_SETTINGS_INDEXSPACE .............. ${COLOR_MAGENTA}${MAS_APP_SETTINGS_INDEXSPACE}"
+    echo_reset_dim "SSL_ENABLED .............................. ${COLOR_MAGENTA}${SSL_ENABLED}"
+    if [[ "$SSL_ENABLED" == "true" ]]; then
+      echo_reset_dim "MAS_JDBC_CERT_LOCAL_FILE .............. ${COLOR_MAGENTA}${MAS_JDBC_CERT_LOCAL_FILE}"
+    fi
+  fi
   
   reset_colors
   echo "${TEXT_RESET}"

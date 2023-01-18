@@ -129,7 +129,8 @@ function pipeline_config() {
     esac
   fi
   true
-
+  
+  config_pipeline_externaldb
   config_pipeline_sno
   config_pipeline_dns
   config_pipeline_applications
