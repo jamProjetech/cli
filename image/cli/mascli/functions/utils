@@ -226,3 +226,20 @@ function detect_sno() {
   fi
 }
 
+function prompt_for_confirm_default_no() {
+  msg=$1
+  varname=$2
+  if confirm_default_yes "${COLOR_YELLOW}$msg ${COLOR_MAGENTA}[Y/n]"; then
+    echo -ne "${COLOR_RESET}\033[1K"
+    if [[ "$varname" != "" ]]; then
+      printf -v "$varname" "%s" "false"
+    fi
+    true
+  else
+    echo -ne "${COLOR_RESET}\033[1K"
+    if [[ "$varname" != "" ]]; then
+      printf -v "$varname" "%s" "true"
+    fi
+    false
+  fi
+}
