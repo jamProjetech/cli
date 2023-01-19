@@ -130,7 +130,6 @@ function pipeline_show_config() {
     echo_h2 "JDBC Configuration" 
     echo_reset_dim "MAS_JDBC_USER ............................ ${COLOR_MAGENTA}${MAS_JDBC_USER}"
     echo_reset_dim "MAS_JDBC_URL ............................. ${COLOR_MAGENTA}${MAS_JDBC_URL}"
-    echo_reset_dim "MAS_JDBC_URL ............................. ${COLOR_MAGENTA}${MAS_JDBC_URL}"
     echo_reset_dim "MAS_APP_SETTINGS_DB2_SCHEMA .............. ${COLOR_MAGENTA}${MAS_APP_SETTINGS_DB2_SCHEMA}"
     echo_reset_dim "MAS_APP_SETTINGS_INDEXSPACE .............. ${COLOR_MAGENTA}${MAS_APP_SETTINGS_INDEXSPACE}"
     echo_reset_dim "SSL_ENABLED .............................. ${COLOR_MAGENTA}${SSL_ENABLED}"
