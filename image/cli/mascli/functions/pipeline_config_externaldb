@@ -2,20 +2,35 @@
 
 function  config_pipeline_externaldb() {
   echo ""
+  echo_h2 "4. JDBC Configuration for the external database"
   prompt_for_confirm_default_yes "+ Configure external database" CONFIGURE_EXTERNAL_DATABASE
 
-  echo "External DB" $CONFIGURE_EXTERNAL_DATABASE
+  echo "${TEXT_DIM} Sample Connection strings (URL):"
+  echo "  - DB2:"
+  echo "    export MAS_JDBC_URL=jdbc:db2://dbserverxx:50000/maxdbxx"
+  echo "    export MAS_JDBC_URL=jdbc:db2://dbserverxx:50000/maxdbxx:sslConnection=true  if SSL enabled"
+  echo "  - Oracle:"
+  echo "    export MAS_JDBC_URL=jdbc:oracle:thin:@dbserverxx:1521:maximo"
+  echo "  - SQL Server:"
+  echo "    export MAS_JDBC_URL='jdbc:sqlserver://;serverName=dbserverxx;portNumber=1433;databaseName=msdbxx;integratedSecurity=false;sendStringParametersAsUnicode=false;selectMethod=cursor;encrypt=false;trustServerCertificate=false;' "
+  echo "    export MAS_JDBC_URL='jdbc:sqlserver://;serverName=dbserverxx;portNumber=1433;databaseName=msdbxx;integratedSecurity=false;sendStringParametersAsUnicode=false;selectMethod=cursor;encrypt=true;trustServerCertificate=true;' if SSL enabled"
+  echo ""
+  reset_colors
+
+  # echo "External DB" $CONFIGURE_EXTERNAL_DATABASE
 
   if [[ "$CONFIGURE_EXTERNAL_DATABASE" == "true" ]]; then
-    echo -e "${COLOR_YELLOW}JDBC Configuration for the external database"
+    
+    # echo -e "${COLOR_YELLOW}JDBC Configuration for the external database"  
     prompt_for_input "Database Instance ID" DB_INSTANCE_ID
-    prompt_for_input "User" MAS_JDBC_USER
+    prompt_for_input "Connection string (URL)" MAS_JDBC_URL
+    prompt_for_input "User name" MAS_JDBC_USER
     prompt_for_input "Password" MAS_JDBC_PASSWORD
-    prompt_for_input "URL" MAS_JDBC_URL
+   
     prompt_for_input "Schema" MAS_APP_SETTINGS_DB2_SCHEMA
-    prompt_for_input "Tablespace" MAS_APP_SETTINGS_TABLESPACE
-    prompt_for_input "Indexspace" MAS_APP_SETTINGS_INDEXSPACE
-    prompt_for_confirm_default_no "SSL" SSL_ENABLED
+    prompt_for_input "Table space" MAS_APP_SETTINGS_TABLESPACE
+    prompt_for_input "Index space" MAS_APP_SETTINGS_INDEXSPACE
+    prompt_for_confirm_default_no "SSL Enabled" SSL_ENABLED
 
     if [[ "$SSL_ENABLED" == "true" ]]; then
       prompt_for_input "Location for SSL certificate" MAS_JDBC_CERT_LOCAL_FILE
