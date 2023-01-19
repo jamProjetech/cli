@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function  config_pipeline_externaldb() {
-  echo
+  echo ""
   prompt_for_confirm_default_no "+ Configure external database" CONFIGURE_EXTERNAL_DATABASE
 
   echo "External DB" $CONFIGURE_EXTERNAL_DATABASE
@@ -24,3 +24,6 @@ function  config_pipeline_externaldb() {
         exit 1
       fi
     fi
+  
+  fi
+}
