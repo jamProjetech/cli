@@ -7,13 +7,13 @@ function  config_pipeline_externaldb() {
 
   echo "${TEXT_DIM} Sample Connection strings (URL):"
   echo "  - DB2:"
-  echo "    export MAS_JDBC_URL=jdbc:db2://dbserverxx:50000/maxdbxx"
-  echo "    export MAS_JDBC_URL=jdbc:db2://dbserverxx:50000/maxdbxx:sslConnection=true  if SSL enabled"
+  echo "    jdbc:db2://dbserverxx:50000/maxdbxx"
+  echo "    jdbc:db2://dbserverxx:50000/maxdbxx:sslConnection=true  if SSL enabled"
   echo "  - Oracle:"
-  echo "    export MAS_JDBC_URL=jdbc:oracle:thin:@dbserverxx:1521:maximo"
+  echo "    jdbc:oracle:thin:@dbserverxx:1521:maximo"
   echo "  - SQL Server:"
-  echo "    export MAS_JDBC_URL='jdbc:sqlserver://;serverName=dbserverxx;portNumber=1433;databaseName=msdbxx;integratedSecurity=false;sendStringParametersAsUnicode=false;selectMethod=cursor;encrypt=false;trustServerCertificate=false;' "
-  echo "    export MAS_JDBC_URL='jdbc:sqlserver://;serverName=dbserverxx;portNumber=1433;databaseName=msdbxx;integratedSecurity=false;sendStringParametersAsUnicode=false;selectMethod=cursor;encrypt=true;trustServerCertificate=true;' if SSL enabled"
+  echo "    'jdbc:sqlserver://;serverName=dbserverxx;portNumber=1433;databaseName=msdbxx;integratedSecurity=false;sendStringParametersAsUnicode=false;selectMethod=cursor;encrypt=false;trustServerCertificate=false;' "
+  echo "    'jdbc:sqlserver://;srverName=dbserverxx;portNumber=1433;databaseName=msdbxx;integratedSecurity=false;sendStringParametersAsUnicode=false;selectMethod=cursor;encrypt=true;trustServerCertificate=true;' if SSL enabled"
   echo ""
   reset_colors
 
