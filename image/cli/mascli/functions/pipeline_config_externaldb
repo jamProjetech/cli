@@ -1,6 +1,6 @@
 #!/bin/bash
 
-function config_pipeline_extenaldb() {
+function  config_pipeline_externaldb() {
   echo
   prompt_for_confirm_default_no "+ Configure external database" CONFIGURE_EXTERNAL_DATABASE
 
