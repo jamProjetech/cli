@@ -225,39 +225,3 @@ function detect_sno() {
     unset SNO_MODE
   fi
 }
-
-
-confirm_default_no() {
-  read -r -p "${1:-Proceed? [y/N]} " response
-  case "$response" in
-    [yY][eE][sS]|[yY])
-      export ALREADY_CONFIRMED="false"
-      false
-      ;;
-    [nN][oO]|[nN])
-      export ALREADY_CONFIRMED="false"
-      true
-      ;;
-    *)
-      false
-      ;;
-  esac
-}
-
-function prompt_for_confirm_default_no() {
-  msg=$1
-  varname=$2
-  if confirm_default_no "${COLOR_YELLOW}$msg ${COLOR_MAGENTA}[y/N]"; then
-    echo -ne "${COLOR_RESET}\033[1K"
-    if [[ "$varname" != "" ]]; then
-      printf -v "$varname" "%s" "false"
-    fi
-    true
-  else
-    echo -ne "${COLOR_RESET}\033[1K"
-    if [[ "$varname" != "" ]]; then
-      printf -v "$varname" "%s" "true"
-    fi
-    false
-  fi
-}

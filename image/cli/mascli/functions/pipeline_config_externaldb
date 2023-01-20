@@ -3,27 +3,25 @@
 function  config_pipeline_externaldb() {
   echo ""
   echo_h2 "4. JDBC Configuration for the external database"
-  prompt_for_confirm_default_yes "+ Configure external database" CONFIGURE_EXTERNAL_DATABASE
+ 
+  if prompt_for_confirm "Configure external database"; then
 
-  echo "${TEXT_DIM} Sample Connection strings (URL):"
-  echo "  - DB2:"
-  echo "    jdbc:db2://dbserverxx:50000/maxdbxx"
-  echo "    jdbc:db2://dbserverxx:50000/maxdbxx:sslConnection=true  if SSL enabled"
-  echo "  - Oracle:"
-  echo "    jdbc:oracle:thin:@dbserverxx:1521:maximo"
-  echo "  - SQL Server:"
-  echo "    'jdbc:sqlserver://;serverName=dbserverxx;portNumber=1433;databaseName=msdbxx;integratedSecurity=false;sendStringParametersAsUnicode=false;selectMethod=cursor;encrypt=false;trustServerCertificate=false;' "
-  echo "    'jdbc:sqlserver://;srverName=dbserverxx;portNumber=1433;databaseName=msdbxx;integratedSecurity=false;sendStringParametersAsUnicode=false;selectMethod=cursor;encrypt=true;trustServerCertificate=true;' if SSL enabled"
-  echo ""
-  reset_colors
+    echo "${TEXT_DIM} Sample Connection strings:"
+    echo "  - DB2:"
+    echo "    jdbc:db2://dbserverxx:50000/maxdbxx"
+    echo "    jdbc:db2://dbserverxx:50000/maxdbxx:sslConnection=true  if SSL enabled"
+    echo "  - Oracle:"
+    echo "    jdbc:oracle:thin:@dbserverxx:1521:maximo"
+    echo "  - SQL Server:"
+    echo "    'jdbc:sqlserver://;serverName=dbserverxx;portNumber=1433;databaseName=msdbxx;integratedSecurity=false;sendStringParametersAsUnicode=false;selectMethod=cursor;encrypt=false;trustServerCertificate=false;' "
+    echo "    'jdbc:sqlserver://;srverName=dbserverxx;portNumber=1433;databaseName=msdbxx;integratedSecurity=false;sendStringParametersAsUnicode=false;selectMethod=cursor;encrypt=true;trustServerCertificate=true;' if SSL enabled"
+    echo ""
+    reset_colors
 
-  # echo "External DB" $CONFIGURE_EXTERNAL_DATABASE
-
-  if [[ "$CONFIGURE_EXTERNAL_DATABASE" == "true" ]]; then
     
     # echo -e "${COLOR_YELLOW}JDBC Configuration for the external database"  
     prompt_for_input "Database Instance ID" DB_INSTANCE_ID
-    prompt_for_input "Connection string (URL)" MAS_JDBC_URL
+    prompt_for_input "Connection string" MAS_JDBC_URL
     prompt_for_input "User name" MAS_JDBC_USER
     prompt_for_input "Password" MAS_JDBC_PASSWORD
    
