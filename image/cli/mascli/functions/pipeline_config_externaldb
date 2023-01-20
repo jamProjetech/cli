@@ -14,7 +14,7 @@ function  config_pipeline_externaldb() {
     echo "    jdbc:oracle:thin:@dbserverxx:1521:maximo"
     echo "  - SQL Server:"
     echo "    'jdbc:sqlserver://;serverName=dbserverxx;portNumber=1433;databaseName=msdbxx;integratedSecurity=false;sendStringParametersAsUnicode=false;selectMethod=cursor;encrypt=false;trustServerCertificate=false;' "
-    echo "    'jdbc:sqlserver://;srverName=dbserverxx;portNumber=1433;databaseName=msdbxx;integratedSecurity=false;sendStringParametersAsUnicode=false;selectMethod=cursor;encrypt=true;trustServerCertificate=true;' if SSL enabled"
+    echo "    'jdbc:sqlserver://;serverName=dbserverxx;portNumber=1433;databaseName=msdbxx;integratedSecurity=false;sendStringParametersAsUnicode=false;selectMethod=cursor;encrypt=true;trustServerCertificate=true;' if SSL enabled"
     echo ""
     reset_colors
 
