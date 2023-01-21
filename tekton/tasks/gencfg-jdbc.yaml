@@ -2,7 +2,7 @@
 apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
-  name: mas-devops-suite-gencfg-jdbc-for-manage
+  name: mas-devops-gencfg-jdbc
 spec:
   params:
     - name: cli_version
@@ -24,7 +24,7 @@ spec:
       description: JDBC password
     - name: mas_jdbc_url
       type: string
-      description: JDBC URL
+      description: JDBC Connection string
     - name: mas_app_settings_db2_schema
       type: string
       description: Database schema name
@@ -36,7 +36,7 @@ spec:
       description: Database indexspace name
     - name: ssl_enabled
       type: string
-      description: Database schema name
+      description: Boolean flag to indicate if database server is SSL enabled
     - name: mas_jdbc_cert_local_file
       type: string
       description: Location for the database SSL Certificate
@@ -97,7 +97,7 @@ spec:
         value: $(params.devops_build_number)
 
   steps:
-    - name: suite-gencfg-jdbc-for-manage
+    - name: gencfg-jdbc
       command:
         - /opt/app-root/src/run-role.sh
         - gencfg_jdbc
