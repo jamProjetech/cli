@@ -124,7 +124,7 @@ function pipeline_show_config() {
   fi
 
   #JDBC
-  echo "CONFIGURE_EXTERNAL_DATABASE" ... ${CONFIGURE_EXTERNAL_DATABASE|
+  echo "CONFIGURE_EXTERNAL_DATABASE ... ${CONFIGURE_EXTERNAL_DATABASE}"
   if [[ "${CONFIGURE_EXTERNAL_DATABASE}" == "true" ]]; then
     reset_colors
     echo "${TEXT_DIM}"
@@ -144,3 +144,4 @@ function pipeline_show_config() {
   prompt_for_confirm "Proceed with these settings" || exit 0
 
 }
+

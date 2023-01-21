@@ -1,5 +1,6 @@
 #!/bin/bash
 
+. $DIR/functions/pipeline_config_externaldb
 
 function channel_select_iot() {
   case $MAS_CHANNEL in
@@ -163,7 +164,7 @@ function channel_select_visualinspection() {
 
 function config_pipeline_applications() {
   echo
-  echo_h2 "6. Application Selection"
+  echo_h2 "5. Application Selection"
   # Default all applications to "do not deploy"
   MAS_APP_SOURCE_IOT='ibm-operator-catalog';              MAS_APP_CHANNEL_IOT=''
   MAS_APP_SOURCE_MONITOR='ibm-operator-catalog';          MAS_APP_CHANNEL_MONITOR=''
@@ -196,6 +197,9 @@ function config_pipeline_applications() {
   if prompt_for_confirm "Install Manage"; then
     channel_select_manage || exit 1
     prompt_for_confirm_default_yes "+ Create demo data" MAS_APP_SETTINGS_DEMODATA
+    prompt_for_confirm "+ Configure external database" CONFIGURE_EXTERNAL_DATABASE
+    if [[ "$CONFIGURE_EXTERNAL_DATABASE" != "true" ]]; then
+      config_pipeline_externaldb
   fi
 
   if [[ "$SNO_MODE" != "true" ]]; then
