@@ -111,7 +111,7 @@
 {{ lookup('template', 'params/install-db2.yml.j2') }}
 
 # Dependencies - JDBC settings
-- name: configure_external_db
+- name: configure_external_database
   type: string
   description: Boolean flag to indicate if external db will be used
   default: "false"

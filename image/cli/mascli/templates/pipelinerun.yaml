@@ -48,6 +48,8 @@ spec:
 
 
     #JDBC
+    - name: configure_external_databse
+      value: '$CONFIGURE_EXTERNAL_DATABASE'
     - name: db_instance_id
       value: '$DB_INSTANCE_ID'
     - name: mas_jdbc_user
