@@ -41,3 +41,4 @@ function  config_pipeline_externaldb() {
     fi
   fi
 }
+
