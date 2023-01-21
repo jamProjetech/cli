@@ -56,7 +56,7 @@ spec:
       value: '$MAS_JDBC_PASSWORD' 
     - name: mas_jdbc_url
       value: '$MAS_JDBC_URL'
-    - name: mas_app+settings_db2_schema
+    - name: mas_app_settings_db2_schema
       value: '$MAS_APP_SETTINGS_DB2_SCHEMA'
     - name: mas_app_settings_tablespace
       value: '$MAS_APP_SETTINGS_TABLESPACE'
