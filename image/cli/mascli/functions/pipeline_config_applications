@@ -274,3 +274,4 @@ function config_pipeline_applications() {
     fi
   fi
 }
+
