@@ -38,6 +38,6 @@ function  config_pipeline_externaldb() {
         exit 1
       fi
     fi
-  
   fi
 }
+
