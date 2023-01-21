@@ -200,6 +200,7 @@ function config_pipeline_applications() {
     prompt_for_confirm "+ Configure external database" CONFIGURE_EXTERNAL_DATABASE
     if [[ "$CONFIGURE_EXTERNAL_DATABASE" != "true" ]]; then
       config_pipeline_externaldb
+    fi
   fi
 
   if [[ "$SNO_MODE" != "true" ]]; then
