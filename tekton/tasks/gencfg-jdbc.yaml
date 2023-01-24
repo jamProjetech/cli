@@ -9,7 +9,7 @@ spec:
       type: string
       default: latest
 
-    - name: configure_external_database
+    - name: configure_external_db
       type : string
       description: Boolean flag to indicate to configure an external database
       default: "false"

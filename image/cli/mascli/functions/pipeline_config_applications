@@ -198,10 +198,10 @@ function config_pipeline_applications() {
     channel_select_manage || exit 1
     prompt_for_confirm_default_yes "+ Create demo data" MAS_APP_SETTINGS_DEMODATA
     if prompt_for_confirm "+ Configure external database"; then
-      CONFIGURE_EXTERNAL_DATABASE="true"
+      CONFIGURE_EXTERNAL_DB="true"
       config_pipeline_externaldb
     else
-      CONFIGURE_EXTERNAL_DATABASE="false"
+      CONFIGURE_EXTERNAL_DB="false"
     fi
   fi
 

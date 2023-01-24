@@ -4,8 +4,8 @@
     - name: devops_suite_name
       value: gencfg-jdbc
 
-    - name: configure_external_database
-      value: "$(params.configure_external_database)"
+    - name: configure_external_db
+      value: "$(params.configure_external_db)"
     - name: db_instance_id
       value: "$(params.db_instance_id)"
     - name: mas_jdbc_user
@@ -30,7 +30,7 @@
     - input: "$(params.mas_app_channel_manage)"
       operator: notin
       values: [""]
-    - input: "$(params.configure_external_db)"
+    - input: "$(params.configure_external_data)"
       operator: notin
       values: ["false"]  
   taskRef:
