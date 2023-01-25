@@ -116,11 +116,11 @@ function pipeline_show_config() {
     reset_colors
     echo "${TEXT_DIM}"
     echo_h2 "DB2 Configuration" "    "
-    echo_reset_dim "DB2_META_STORAGE_SIZE .............. ${COLOR_MAGENTA}${DB2_META_STORAGE_SIZE}"
-    echo_reset_dim "DB2_DATA_STORAGE_SIZE .............. ${COLOR_MAGENTA}${DB2_DATA_STORAGE_SIZE}"
-    echo_reset_dim "DB2_BACKUP_STORAGE_SIZE ............ ${COLOR_MAGENTA}${DB2_BACKUP_STORAGE_SIZE}"
-    echo_reset_dim "DB2_TEMP_STORAGE_SIZE .............. ${COLOR_MAGENTA}${DB2_TEMP_STORAGE_SIZE}"
-    echo_reset_dim "DB2_LOGS_STORAGE_SIZE .............. ${COLOR_MAGENTA}${DB2_LOGS_STORAGE_SIZE}"
+    echo_reset_dim "DB2 Meta Storage Size .............. ${COLOR_MAGENTA}${DB2_META_STORAGE_SIZE}"
+    echo_reset_dim "DB2 Data Storage Size .............. ${COLOR_MAGENTA}${DB2_DATA_STORAGE_SIZE}"
+    echo_reset_dim "DB2_Data Storage Size .............. ${COLOR_MAGENTA}${DB2_BACKUP_STORAGE_SIZE}"
+    echo_reset_dim "DB2 Temp Storage Size .............. ${COLOR_MAGENTA}${DB2_TEMP_STORAGE_SIZE}"
+    echo_reset_dim "DB2 Logs Storage Size .............. ${COLOR_MAGENTA}${DB2_LOGS_STORAGE_SIZE}"
   fi
 
   #echo "CONFIGURE_EXTERNAL_DB ... ${CONFIGURE_EXTERNAL_DB}"
@@ -128,13 +128,14 @@ function pipeline_show_config() {
     reset_colors
     echo "${TEXT_DIM}"
     echo_h2 "JDBC Configuration" "    "
-    echo_reset_dim "MAS_JDBC_USER ................. ${COLOR_MAGENTA}${MAS_JDBC_USER}"
-    echo_reset_dim "MAS_JDBC_URL .................. ${COLOR_MAGENTA}${MAS_JDBC_URL}"
-    echo_reset_dim "MAS_APP_SETTINGS_DB2_SCHEMA ... ${COLOR_MAGENTA}${MAS_APP_SETTINGS_DB2_SCHEMA}"
-    echo_reset_dim "MAS_APP_SETTINGS_INDEXSPACE ... ${COLOR_MAGENTA}${MAS_APP_SETTINGS_INDEXSPACE}"
-    echo_reset_dim "SSL_ENABLED ................... ${COLOR_MAGENTA}${SSL_ENABLED}"
+    echo_reset_dim "DB User ................ ${COLOR_MAGENTA}${MAS_JDBC_USER}"
+    echo_reset_dim "DB URL ................. ${COLOR_MAGENTA}${MAS_JDBC_URL}"
+    echo_reset_dim "DB Schema .............. ${COLOR_MAGENTA}${MAS_APP_SETTINGS_DB2_SCHEMA}"
+    echo_reset_dim "Table Space ............ ${COLOR_MAGENTA}${MAS_APP_SETTINGS_TABLESPACE}"
+    echo_reset_dim "Index Space ............ ${COLOR_MAGENTA}${MAS_APP_SETTINGS_INDEXSPACE}"
+    echo_reset_dim "SSL enabled ............ ${COLOR_MAGENTA}${SSL_ENABLED}"  
     if [[ "${SSL_ENABLED}" == "true" ]]; then
-      echo_reset_dim "MAS_JDBC_CERT_LOCAL_FILE .... ${COLOR_MAGENTA}${MAS_JDBC_CERT_LOCAL_FILE}"
+      echo_reset_dim "SSL Certificate Path ... ${COLOR_MAGENTA}${MAS_JDBC_CERT_LOCAL_FILE}"
     fi
   fi
   
