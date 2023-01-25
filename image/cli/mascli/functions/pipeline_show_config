@@ -128,7 +128,7 @@ function pipeline_show_config() {
     reset_colors
     echo "${TEXT_DIM}"
     echo_h2 "JDBC Configuration" "    "
-    echo_reset_dim "DB User ................ ${COLOR_MAGENTA}${MAS_JDBC_USER}"
+    echo_reset_dim "DB User ................. ${COLOR_MAGENTA}${MAS_JDBC_USER}"
     echo_reset_dim "DB URL ................. ${COLOR_MAGENTA}${MAS_JDBC_URL}"
     echo_reset_dim "DB Schema .............. ${COLOR_MAGENTA}${MAS_APP_SETTINGS_DB2_SCHEMA}"
     echo_reset_dim "Table Space ............ ${COLOR_MAGENTA}${MAS_APP_SETTINGS_TABLESPACE}"
