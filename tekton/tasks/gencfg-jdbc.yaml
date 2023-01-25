@@ -21,7 +21,7 @@ spec:
     - name: mas_workspace_id
       type: string
       default: "" # Only required if config_scope = ws or wsapp
-    - name: mas_application_id
+    - name: mas_app_id
       type: string
       default: "" # Only required if config_scope = app or wsapp
 
