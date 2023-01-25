@@ -123,8 +123,7 @@ function pipeline_show_config() {
     echo_reset_dim "DB2_LOGS_STORAGE_SIZE .............. ${COLOR_MAGENTA}${DB2_LOGS_STORAGE_SIZE}"
   fi
 
-  #JDBC
-  echo "CONFIGURE_EXTERNAL_DB ... ${CONFIGURE_EXTERNAL_DB}"
+  #echo "CONFIGURE_EXTERNAL_DB ... ${CONFIGURE_EXTERNAL_DB}"
   if [[ "${CONFIGURE_EXTERNAL_DB}" == "true" ]]; then
     reset_colors
     echo "${TEXT_DIM}"
