@@ -4,6 +4,11 @@
     - name: devops_suite_name
       value: gencfg-jdbc
 
+    - name: mas_app_id
+      value: manage
+    - name: mas_workspace_id
+      value: "$(params.mas_workspace_id)"
+
     - name: configure_external_db
       value: "$(params.configure_external_db)"
     - name: db_instance_id
