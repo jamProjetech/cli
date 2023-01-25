@@ -124,8 +124,8 @@ function pipeline_show_config() {
   fi
 
   #JDBC
-  echo "CONFIGURE_EXTERNAL_DATABASE ... ${CONFIGURE_EXTERNAL_DATABASE}"
-  if [[ "${CONFIGURE_EXTERNAL_DATABASE}" == "true" ]]; then
+  echo "CONFIGURE_EXTERNAL_DB ... ${CONFIGURE_EXTERNAL_DB}"
+  if [[ "${CONFIGURE_EXTERNAL_DB}" == "true" ]]; then
     reset_colors
     echo "${TEXT_DIM}"
     echo_h2 "JDBC Configuration" 
