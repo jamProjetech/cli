@@ -105,7 +105,7 @@ spec:
       - name: MAS_APP_SETTINGS_INDEXSPACE
         value: $(params.mas_app_settings_indexspace)
       - name: SSL_ENABLED
-        value: False
+        value: $(params.ssl_enabled)
       - name: MAS_JDBC_CERT_LOCAL_FILE
         value: $(params.mas_jdbc_cert_local_file)
 
