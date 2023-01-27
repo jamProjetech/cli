@@ -21,7 +21,6 @@ function  config_pipeline_externaldb() {
   echo ""
   reset_colors
 
-  export CONFIGURE_EXTERNAL_DB=true
   # echo -e "${COLOR_YELLOW}JDBC Configuration for the external database"  
   prompt_for_input "Database Instance ID" DB_INSTANCE_ID
   prompt_for_input "Connection string" MAS_JDBC_URL
@@ -34,11 +33,14 @@ function  config_pipeline_externaldb() {
   prompt_for_confirm_default_yes "SSL enabled" SSL_ENABLED
 
   if [[ "$SSL_ENABLED" == "true" ]]; then
+    export SS=true
     prompt_for_input "Location for SSL certificate" MAS_JDBC_CERT_LOCAL_FILE
     if [[ ! -e "$MAS_JDBC_CERT_LOCAL_FILE" ]]; then
       echo_warning "Error: File does not exist: $MAS_JDBC_CERT_LOCAL_FILE"
       exit 1
     fi
   fi
+
+  echo " SSL_ENABLED: " $SSL_ENABLED
 }
 
