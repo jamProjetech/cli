@@ -143,6 +143,10 @@
 - name: mas_jdbc_cert_local_file
   type: string
   description: Location for the database SSL Certificate
+- name: mas_config_scope
+  type: string
+  description: Database configuration scope. Supported values are `system`, `ws`, `app`, or `wsapp`
+  default: "wsapp"
 
 
 # Dependencies - CP4D

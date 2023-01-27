@@ -29,6 +29,8 @@
       value: "$(params.ssl_enabled)"
     - name: mas_jdbc_cert_local_file
       value: "$(params.mas_jdbc_cert_local_file)"
+    - name: mas_config_scope
+      value: "$(params.mas_config_scope)"
 
   # Only perform the hack if Manage is being installed
   when:
