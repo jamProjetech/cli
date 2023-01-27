@@ -41,6 +41,6 @@ function  config_pipeline_externaldb() {
     fi
   fi
 
-  echo " SSL_ENABLED: " $SSL_ENABLED
+  MAS_CONFIG_SCOPE="wsapp"
 }
 

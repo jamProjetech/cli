@@ -56,11 +56,6 @@ spec:
     - name: mas_jdbc_cert_local_file
       type: string
       description: Location for the database SSL Certificate
-    - name: mas_config_scope
-      type: string
-      description: Database configuration scope. Supported values are `system`, `ws`, `app`, or `wsapp`
-      default: "wsapp"
-
 
     # Optional support built into the ansible-devops image
     # for saving task execution results to a MongoDb instance
@@ -112,8 +107,6 @@ spec:
         value: $(params.ssl_enabled)
       - name: MAS_JDBC_CERT_LOCAL_FILE
         value: $(params.mas_jdbc_cert_local_file)
-      - name: MAS_CONFIG_SCOPE
-        value: $(params.mas_config_scope)
 
 
       # Optional support built into the ansible-devops image
