@@ -191,6 +191,10 @@ spec:
       value: '$MAS_APP_SETTINGS_AIO_FLAG'
     - name: mas_app_settings_demodata
       value: '$MAS_APP_SETTINGS_DEMODATA'
+    - name: mas_app_settings_tablespace
+      value: '$MAS_APP_SETTINGS_TABLESPACE'
+    - name: mas_app_settings_indexspace
+      value: '$MAS_APP_SETTINGS_INDEXSPACE' 
     # Monitor Application
     - name: mas_app_source_monitor
       value: '$MAS_APP_SOURCE_MONITOR'
