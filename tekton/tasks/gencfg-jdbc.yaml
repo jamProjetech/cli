@@ -128,3 +128,6 @@ spec:
       image: quay.io/ibmmas/cli:3.11.0-pre.external-db
       imagePullPolicy: Always
       workingDir: /workspace/configs
+
+  workspaces:
+    - name: configs
