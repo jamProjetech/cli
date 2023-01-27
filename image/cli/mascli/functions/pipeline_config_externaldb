@@ -3,9 +3,7 @@
 
 function  config_pipeline_externaldb() {
   echo ""
-  #echo_h2 "4. JDBC Configuration for the external database"
   echo -e "${COLOR_YELLOW}JDBC Configuration for the external database:" 
-  #if prompt_for_confirm "Configure external database";  CONFIGURE_EXTERNAL_DB then
 
   echo "${TEXT_DIM} Sample Connection strings:"
   echo "  - DB2:"
