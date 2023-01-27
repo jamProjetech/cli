@@ -39,6 +39,6 @@ function  config_pipeline_externaldb() {
     fi
   fi
 
-  MAS_CONFIG_SCOPE="wsapp"
+  MAS_CONFIG_SCOPE="system"
 }
 
