@@ -88,12 +88,6 @@ spec:
         value: $(params.mas_jdbc_password)
       - name: MAS_JDBC_URL
         value: $(params.mas_jdbc_url)
-      - name: MAS_APP_SETTINGS_DB2_SCHEMA
-        value: $(params.mas_app_settings_db2_schema)
-      - name: MAS_APP_SETTINGS_TABLESPACE
-        value: $(params.mas_app_settings_tablespace)
-      - name: MAS_APP_SETTINGS_INDEXSPACE
-        value: $(params.mas_app_settings_indexspace)
       - name: SSL_ENABLED
         value: $(params.ssl_enabled)
       - name: MAS_JDBC_CERT_LOCAL_FILE
