@@ -42,6 +42,11 @@ spec:
       type: string
       description: Name of the Manage database indexspace
       default: ""
+    - name: mas_app_settings_db2_schema
+      type: string
+      description: Name of the Manage database schema
+      default: ""
+
 
     # Deployment Size - Predict only
     - name: predict_deployment_size
@@ -110,6 +115,8 @@ spec:
         value: $(params.mas_app_settings_tablespace)
       - name: MAS_APP_SETTINGS_INDEXSPACE
         value: $(params.mas_app_settings_indexspace)
+      - name: MAS_APP_SETTINGS_DB2_SCHEMA
+        value: $(params.mas_app_settings_db2_schema)
 
       # Predict
       - name: PREDICT_DEPLOYMENT_SIZE
@@ -143,7 +150,8 @@ spec:
       command:
         - /opt/app-root/src/run-role.sh
         - suite_app_config
-      image: quay.io/ibmmas/cli:latest
+      #image: quay.io/ibmmas/cli:latest
+      image: quay.io/ibmmas/cli:3.11.0-pre.external-db
       imagePullPolicy: $(params.image_pull_policy)
 
   workspaces:

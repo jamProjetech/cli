@@ -26,8 +26,8 @@ function  config_pipeline_externaldb() {
   prompt_for_input "Password" MAS_JDBC_PASSWORD
    
   prompt_for_input "Schema" MAS_APP_SETTINGS_DB2_SCHEMA
-  prompt_for_input "Table space" MAS_APP_SETTINGS_TABLESPACE
-  prompt_for_input "Index space" MAS_APP_SETTINGS_INDEXSPACE
+  prompt_for_input "Tablespace" MAS_APP_SETTINGS_TABLESPACE
+  prompt_for_input "Indexspace" MAS_APP_SETTINGS_INDEXSPACE
   prompt_for_confirm_default_yes "SSL enabled" SSL_ENABLED
 
   if [[ "$SSL_ENABLED" == "true" ]]; then
@@ -40,5 +40,6 @@ function  config_pipeline_externaldb() {
   fi
 
   MAS_CONFIG_SCOPE="system"
+  echo ""
 }
 

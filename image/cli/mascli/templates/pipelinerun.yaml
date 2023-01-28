@@ -195,6 +195,8 @@ spec:
       value: '$MAS_APP_SETTINGS_TABLESPACE'
     - name: mas_app_settings_indexspace
       value: '$MAS_APP_SETTINGS_INDEXSPACE' 
+    - name: mas_app_settings_db2_schema
+      value: '$MAS_APP_SETTINGS_DB2_SCHEMA' 
     # Monitor Application
     - name: mas_app_source_monitor
       value: '$MAS_APP_SOURCE_MONITOR'
