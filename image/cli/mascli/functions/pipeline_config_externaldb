@@ -7,15 +7,7 @@ function  config_pipeline_externaldb() {
 
   echo "${TEXT_DIM} Sample Connection strings:"
   echo "  - DB2:"
-  echo "    jdbc:db2://dbserverxx:50000/maxdbxx"
-  echo "    SSL enabled:"
   echo "    jdbc:db2://dbserverxx:50000/maxdbxx:sslConnection=true"
-  echo "  - Oracle:"
-  echo "    jdbc:oracle:thin:@dbserverxx:1521:maximo"
-  echo "  - SQL Server:"
-  echo "    'jdbc:sqlserver://;serverName=dbserverxx;portNumber=1433;databaseName=msdbxx;integratedSecurity=false;sendStringParametersAsUnicode=false;selectMethod=cursor;encrypt=false;trustServerCertificate=false;'"
-  echo "    SSL enabled:"
-  echo "    'jdbc:sqlserver://;serverName=dbserverxx;portNumber=1433;databaseName=msdbxx;integratedSecurity=false;sendStringParametersAsUnicode=false;selectMethod=cursor;encrypt=true;trustServerCertificate=true;'"
   echo ""
   reset_colors
 
