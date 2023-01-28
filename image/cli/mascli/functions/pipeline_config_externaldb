@@ -3,13 +3,6 @@
 
 function  config_pipeline_externaldb() {
   echo ""
-  echo -e "${COLOR_YELLOW}JDBC Configuration for the external database:" 
-
-  echo "${TEXT_DIM} Sample Connection strings:"
-  echo "  - DB2:"
-  echo "    jdbc:db2://dbserverxx:50000/maxdbxx:sslConnection=true"
-  echo ""
-  reset_colors
 
   # echo -e "${COLOR_YELLOW}JDBC Configuration for the external database"  
   prompt_for_input "Database Instance ID" DB_INSTANCE_ID
