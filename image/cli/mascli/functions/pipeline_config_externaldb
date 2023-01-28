@@ -2,7 +2,6 @@
 
 
 function  config_pipeline_externaldb() {
-  echo ""
 
   # echo -e "${COLOR_YELLOW}JDBC Configuration for the external database"  
   prompt_for_input "Database Instance ID" DB_INSTANCE_ID
