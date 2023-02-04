@@ -38,6 +38,22 @@ spec:
       type: string
       description: Flag indicating if manage demodata should be loaded or not
       default: ""
+    - name: mas_app_settings_tablespace
+      type: string
+      description: Name of the Manage database tablespace
+      default: ""
+    - name: mas_app_settings_indexspace
+      type: string
+      description: Name of the Manage database indexspace
+      default: ""
+    - name: mas_app_settings_db2_schema
+      type: string
+      description: Name of the Manage database schema
+      default: ""
+    - name: mas_appws_jdbc_binding
+      type: string
+      description: Name of the Manage applicaion workspace JDBC binding
+      default: ""
 
     # Deployment Size - Predict only
     - name: predict_deployment_size
@@ -104,6 +120,14 @@ spec:
         value: $(params.mas_app_settings_aio_flag)
       - name: MAS_APP_SETTINGS_DEMODATA
         value: $(params.mas_app_settings_demodata)
+      - name: MAS_APP_SETTINGS_TABLESPACE
+        value: $(params.mas_app_settings_tablespace)
+      - name: MAS_APP_SETTINGS_INDEXSPACE
+        value: $(params.mas_app_settings_indexspace)
+      - name: MAS_APP_SETTINGS_DB2_SCHEMA
+        value: $(params.mas_app_settings_db2_schema)
+      - name: MAS_APPWS_JDBC_BINDING
+        value: $(params.mas_appws_jdbc_binding)
 
       # Predict
       - name: PREDICT_DEPLOYMENT_SIZE

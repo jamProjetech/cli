@@ -53,7 +53,9 @@
     # TODO: Test Db2 install using RWO storage only
     - input: "$(params.storage_class_rwx)"
       operator: notin
-      values: ["none"]
+    - input: "$(params.configure_external_db)"
+      operator: notin
+      values: ["true"]  
   taskRef:
     name: mas-devops-db2
     kind: Task
