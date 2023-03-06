@@ -200,6 +200,11 @@ function config_pipeline_applications() {
       MAS_APP_SETTINGS_PERSISTENT_VOLUMES_FLAG=true
       MAS_APP_SETTINGS_SERVER_BUNDLES_SIZE="jms"
     fi
+    
+    if [[ "$SNO_MODE" != "true" && $(oc describe node | grep ProviderID | wc -l | xargs) == 0 ]]; then
+      if prompt_for_confirm "+ Install ODF LVM Operator (The ODF LVM Operator manages local storage using LVM for SNO.)"; then
+         ROLE_NAME="odf_lvm" ansible-playbook ibm.mas_devops.run_role || exit 1
+    fi
   fi
 
   if [[ "$SNO_MODE" != "true" ]]; then
