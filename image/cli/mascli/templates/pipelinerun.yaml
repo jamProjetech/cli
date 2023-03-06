@@ -73,8 +73,26 @@ spec:
     - name: db2_data_storage_size
       value: '$DB2_DATA_STORAGE_SIZE'
 
-    # Dependencies - MongoDb
+    # JDBC Configuration
     # -------------------------------------------------------------------------
+    - name: configure_external_db
+      value: '$CONFIGURE_EXTERNAL_DB'
+    - name: db_instance_id
+      value: '$DB_INSTANCE_ID'
+    - name: mas_jdbc_user
+      value: '$MAS_JDBC_USER'
+    - name: mas_jdbc_password
+      value: '$MAS_JDBC_PASSWORD' 
+    - name: mas_jdbc_url
+      value: '$MAS_JDBC_URL'
+    - name: ssl_enabled
+      value: '$SSL_ENABLED'
+    - name: mas_jdbc_cert_local_file
+      value: '$MAS_JDBC_CERT_LOCAL_FILE'
+    - name: mas_config_scope
+      value: '$MAS_CONFIG_SCOPE'
+   
+    # Additional Mongo DB parameters
     - name: mongodb_replicas
       value: '$MONGODB_REPLICAS'
     - name: mongodb_cpu_requests
@@ -206,6 +224,13 @@ spec:
       value: '$MAS_APP_SETTINGS_AIO_FLAG'
     - name: mas_app_settings_demodata
       value: '$MAS_APP_SETTINGS_DEMODATA'
+    - name: mas_app_settings_tablespace
+      value: '$MAS_APP_SETTINGS_TABLESPACE'
+    - name: mas_app_settings_indexspace
+      value: '$MAS_APP_SETTINGS_INDEXSPACE'
+    - name: mas_app_settings_db2_schema
+      value: '$MAS_APP_SETTINGS_DB2_SCHEMA'
+
     - name: mas_appws_bindings_jdbc_manage
       value: '$MAS_APPWS_BINDINGS_JDBC_MANAGE'
     - name: mas_app_settings_persistent_volumes_flag
