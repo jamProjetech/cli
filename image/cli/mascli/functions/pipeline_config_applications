@@ -204,12 +204,17 @@ function config_pipeline_applications() {
     fi
     
     if [[ "$SNO_MODE" == "true" && $(oc describe node | grep ProviderID | wc -l | xargs) == 0 ]]; then
-      oc patch configs.imageregistry.operator.openshift.io cluster --type merge --patch '{"spec":{"managementState":"Managed"}}'
-      oc patch configs.imageregistry.operator.openshift.io/cluster --patch '{"spec":{"defaultRoute":true}}' --type=merge
+      oc patch configs.imageregistry.operator.openshift.io cluster --type merge --patch '{"spec":{"managementState":"Managed", "storage":{"emptyDir": {}} }}' &>> $LOGFILE
+      oc patch configs.imageregistry.operator.openshift.io/cluster --patch '{"spec":{"defaultRoute":true}}' --type=merge &>> $LOGFILE
       if prompt_for_confirm "+ Install ODF LVM Operator (The ODF LVM Operator manages local storage using LVM for SNO.)"; then
-         ROLE_NAME="odf_lvm" ansible-playbook ibm.mas_devops.run_role || exit 1
+        ROLE_NAME="odf_lvm" ansible-playbook ibm.mas_devops.run_role || exit 1 &>> $LOGFILE
+        echo -en "\033[1K" # Clear current line
+        echo -en "\033[u" # Restore cursor position
+        echo "${COLOR_GREEN}ODF LVM Operator is installed and ready${COLOR_RESET}"
+        echo
       fi
     fi
+
     # JDBC Config
     if prompt_for_confirm "+ Configure external database"; then
       CONFIGURE_EXTERNAL_DB="true"
