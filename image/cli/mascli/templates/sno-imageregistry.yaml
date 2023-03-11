@@ -13,6 +13,8 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 20Gi
+      storage: 100Gi
   volumeName: registry-storage
   volumeMode: Filesystem
+  storageClassName: odf-lvm-vg1
+
