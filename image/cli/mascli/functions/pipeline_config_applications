@@ -1,6 +1,7 @@
 #!/bin/bash
 
 . $DIR/functions/pipeline_config_externaldb
+. $DIR/functions/sno_config
 
 
 function channel_select_iot() {
@@ -202,19 +203,7 @@ function config_pipeline_applications() {
       MAS_APP_SETTINGS_PERSISTENT_VOLUMES_FLAG=true
       MAS_APP_SETTINGS_SERVER_BUNDLES_SIZE="jms"
     fi
-    
-    if [[ "$SNO_MODE" == "true" && $(oc describe node | grep ProviderID | wc -l | xargs) == 0 ]]; then
-      oc patch configs.imageregistry.operator.openshift.io cluster --type merge --patch '{"spec":{"managementState":"Managed", "storage":{"emptyDir": {}} }}' &>> $LOGFILE
-      oc patch configs.imageregistry.operator.openshift.io/cluster --patch '{"spec":{"defaultRoute":true}}' --type=merge &>> $LOGFILE
-      if prompt_for_confirm "+ Install ODF LVM Operator (The ODF LVM Operator manages local storage using LVM for SNO.)"; then
-        ROLE_NAME="odf_lvm" ansible-playbook ibm.mas_devops.run_role || exit 1 &>> $LOGFILE
-        echo -en "\033[1K" # Clear current line
-        echo -en "\033[u" # Restore cursor position
-        echo "${COLOR_GREEN}ODF LVM Operator is installed and ready${COLOR_RESET}"
-        echo
-      fi
-    fi
-
+     
     # JDBC Config
     if prompt_for_confirm "+ Configure external database"; then
       CONFIGURE_EXTERNAL_DB="true"
@@ -222,6 +211,11 @@ function config_pipeline_applications() {
     else
       CONFIGURE_EXTERNAL_DB="false"
     fi
+    # non-cloud providers like bare metal and vSphere for SNO
+    if [[ "$SNO_MODE" == "true" && $(oc describe node | grep ProviderID | wc -l | xargs) == 0 ]]; then   
+      sno_config
+    fi
+
   fi
 
   if [[ "$SNO_MODE" != "true" ]]; then
