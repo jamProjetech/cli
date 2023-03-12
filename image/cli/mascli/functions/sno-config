@@ -12,8 +12,9 @@ function sno_config() {
         echo
 
         # SNO installation sets the managementState to Removed. Updating it to Managed
-        echo "Update managedState to Managed, Storgae to pvc, Rolling"
-        oc patch configs.imageregistry.operator.openshift.io cluster --type merge --patch '{"spec":{"managementState":"Managed", "storage":{"emptyDir": {}} }}' &>> $LOGFILE      
+        echo "Update managedState to Managed, Storage to pvc, rolloutStrategy to Recreate"
+  
+        oc patch configs.imageregistry.operator.openshift.io cluster --type merge --patch '{"spec":{"managementState":"Managed", "rolloutStrategy":"Recreate", "storage":{"pvc": {"claim": ""}} }}' &>> $LOGFILE      
         oc patch configs.imageregistry.operator.openshift.io/cluster --patch '{"spec":{"defaultRoute":true}}' --type=merge &>> $LOGFILE
         
         echo
