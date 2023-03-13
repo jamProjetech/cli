@@ -1,9 +1,8 @@
 #!/bin/bash
 
 function sno_config() {
-    echo "The OpenShift Data Foundation (ODF) Logical Volume Manager (LVM) Operator is used for managing local storage on bare metal and vSphere. \n It requires dedicated disks on each SNO cluster to be used by ODF LVM Operator."
-    echo
-    echo "Ensure that no other storage provisioner is installed on the SNO cluster. OpenShift Data Foundation Logical Volume Manager Operator \n should be the only storage provisioner as it uses all available disks on the node."
+    echo "The OpenShift Data Foundation (ODF) Logical Volume Manager (LVM) Operator is used for managing local storage on bare metal and vSphere. \n It requires dedicated disks on each SNO cluster to be used by ODF LVM Operator.\n"
+    echo "Ensure that no other storage provisioner is installed on the SNO cluster. OpenShift Data Foundation Logical Volume Manager Operator \n should be the only storage provisioner as it uses all available disks on the node.\n"
     if prompt_for_confirm "+ Do you want to proceed with ODF LVM Operator installation"; then
         ROLE_NAME="odf_lvm" ansible-playbook ibm.mas_devops.run_role || exit 1 &>> $LOGFILE
         oc patch storageclass odf-lvm-vg1 -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
@@ -13,7 +12,7 @@ function sno_config() {
         echo
 
         # SNO installation sets the managementState to Removed. Updating it to Managed
-        echo "Update image registry configuration custom resource"
+        echo "Update image registry configuration custom resource
   
         oc patch configs.imageregistry.operator.openshift.io cluster --type merge --patch '{"spec":{"managementState":"Managed", "rolloutStrategy":"Recreate", "storage":{"pvc": {"claim": ""}} }}' &>> $LOGFILE      
         oc patch configs.imageregistry.operator.openshift.io/cluster --patch '{"spec":{"defaultRoute":true}}' --type=merge &>> $LOGFILE
@@ -38,8 +37,7 @@ function sno_config() {
           echo "PVC image-registry-storage status is not Bound status"
           echo
           if prompt_for_confirm "+ Recreate PVC image-registry-storage with ODF LVM storageclass"; then
-            echo "Deleting pvc image-registry-storage"
-            echo
+            echo "Deleting pvc image-registry-storage\n"
             oc delete pvc image-registry-storage --namespace openshift-image-registry &>> $LOGFILE
             oc patch pvc image-registry-storage -p '{"metadata":{"finalizers":null}}' --namespace openshift-image-registry &>> $LOGFILE
 
