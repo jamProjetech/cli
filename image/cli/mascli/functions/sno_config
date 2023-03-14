@@ -1,0 +1,74 @@
+#!/bin/bash
+
+function sno_config() {
+  echo "The OpenShift Data Foundation (ODF) Logical Volume Manager (LVM) Operator is used for managing local storage on bare metal and vSphere. \n It requires dedicated disks on each SNO cluster to be used by ODF LVM Operator.\n"
+  echo "Ensure that no other storage provisioner is installed on the SNO cluster. OpenShift Data Foundation Logical Volume Manager Operator \n should be the only storage provisioner as it uses all available disks on the node.\n"
+  if prompt_for_confirm "+ Do you want to proceed with ODF LVM Operator installation"; then
+    ROLE_NAME="odf_lvm" ansible-playbook ibm.mas_devops.run_role || exit 1 &>> $LOGFILE
+    oc patch storageclass odf-lvm-vg1 -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
+    echo -en "\033[1K" # Clear current line
+    echo -en "\033[u" # Restore cursor position
+    echo "${COLOR_GREEN}ODF LVM Operator is installed and ready${COLOR_RESET}\n"
+
+    # SNO installation sets the managementState to Removed. Updating it to Managed
+    echo "Update image registry configuration custom resource\n"
+  
+    oc patch configs.imageregistry.operator.openshift.io cluster --type merge --patch '{"spec":{"managementState":"Managed", "rolloutStrategy":"Recreate", "storage":{"pvc": {"claim": ""}} }}' &>> $LOGFILE      
+    oc patch configs.imageregistry.operator.openshift.io/cluster --patch '{"spec":{"defaultRoute":true}}' --type=merge &>> $LOGFILE
+        
+    echo "${COLOR_GREEN}Configuration for image registry is updated${COLOR_RESET}\n"
+    
+    sleep 10
+    oc get pvc image-registry-storage --namespace openshift-image-registry &>> $LOGFILE
+    LOOKUP_RESULT=$?
+    if [[ "$LOOKUP_RESULT" == "0" ]]; do
+      echo "${COLOR_RED}Please follow the documentation to create PV/PVC for image storage${COLOR_RESET}\n"
+      exit 1
+    fi
+
+    # checking PVC status
+    # There is a known issue. The pvc gets created with RWX. The workaround is to delete and recreate with RWO and LVM storage class
+    LOOKUP_RESULT= $(oc get pvc image-registry-storage --namespace openshift-image-registry -o jsonpath="{.status.phase}")
+    # if pvc status is pending
+    if [[ "$LOOKUP_RESULT" != "Bound" ]]; then
+      echo "PVC image-registry-storage status is not Bound status\n"
+      if prompt_for_confirm "+ Recreate PVC image-registry-storage with ODF LVM storageclass"; then
+        echo "Deleting pvc image-registry-storage\n"
+        oc delete pvc image-registry-storage --namespace openshift-image-registry &>> $LOGFILE
+        oc patch pvc image-registry-storage -p '{"metadata":{"finalizers":null}}' --namespace openshift-image-registry &>> $LOGFILE
+
+        oc wait --for=delete pvc image-registry-storage --timeout=15s  &>> $LOGFILE
+        oc get pvc image-registry-storage &>> $LOGFILE
+        LOOKUP_RESULT=$1
+        if [[ "$LOOKUP_RESULT" == "1" ]]; do
+          echo "${COLOR_RED}Unable to delete image-registry-storage PVC. Please follow the documentation to delete and recreate PVC${COLOR_RESET}\n"
+          exit 1
+        fi
+
+        echo
+        echo 'PVC image-registry-storage is deleted \n'
+        echo
+        echo 'Recreating pvc image-registry-storage ...\n'
+        echo
+
+        oc apply -f ../templates/sno-imageregistrystorage-pvc.yaml &>> $LOGFILE
+        oc wait --for=jsonpath='{.status.phase}'=Bound pvc/image-registry-storage --timeout=15s  &>> $LOGFILE
+       
+        # check status
+        LOOKUP_RESULT= $(oc get pvc image-registry-storage --namespace openshift-image-registry -o jsonpath="{.status.phase}")
+        # if still pending. wait for 30s.
+        if [[ "$LOOKUP_RESULT" != "Bound" ]]; then
+          echo "${COLOR_RED} PVC image-registry-storage is not in Bound status. Please follow the documentation to recreate it manually${COLOR_RESET}\n"
+          exit 1
+        fi
+        echo -en "\033[1K" # Clear current line
+        echo -en "\033[u" # Restore cursor position
+        echo "${COLOR_GREEN}PVC image-registry-storage recreated ${COLOR_RESET}\n" 
+        echo
+      else   
+        echo "${COLOR_RED}PVC image-registry-storage is not in Bound status. Please follow the documentation to recreate PVC${COLOR_RESET}\n"
+        exit 1
+      fi
+    fi
+  fi
+}
