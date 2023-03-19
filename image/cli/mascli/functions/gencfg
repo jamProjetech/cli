@@ -60,7 +60,7 @@ def cli(ctx):
 if ssl-enabled==True
     @click.option("--ssl-cert", help="Location of certificate file", required=False, prompt='Path to certificate file', type=click.Path(exists=True))
 
-def jdbc(mascli, instance_id, scope, **kwargs):
+def jdbc(mascli, instance_id, scope, jdbc_cfg_file, **kwargs):
     """
     Generate a JDBC Config .. currently there are only uses for system and workspace-application scoped JDBC configs
     """
@@ -91,7 +91,7 @@ def jdbc(mascli, instance_id, scope, **kwargs):
             jdbc_cert_local_file_content = cFile.read()
     else:
         jdbc_cert_local_file_content = ""
-    jdbc_cfg_file = kwargs["jdbc_cfg_file"]
+
 
     cfg = template.render(
         scope=scope,
