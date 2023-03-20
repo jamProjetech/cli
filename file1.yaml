@@ -1,0 +1,7 @@
+"---\napiVersion: v1\nkind: Secret\ntype: Opaque\nmetadata:\n  name: \"jdbc-system-credentials\"\
+  \n  namespace: \"mas-mas1-core\"\nstringData:\n  username: \"g3\"\n  password: \"\
+  g4\"\n---\napiVersion: config.mas.ibm.com/v1\nkind: JdbcCfg\nmetadata:\n  name:\
+  \ \"mas1-jdbc-system\"\n  namespace: \"mas-mas1-core\"\n  labels:\n    'mas.ibm.com/configScope':\
+  \ 'system'\n    'mas.ibm.com/instanceId': 'mas1'\nspec:\n  displayName: \"g1\"\n\
+  \  config:\n    url: \"g2\"\n    sslEnabled: False\n    credentials:\n      secretName:\
+  \ \"jdbc-system-credentials\""
