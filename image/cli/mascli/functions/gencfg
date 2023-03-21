@@ -95,10 +95,6 @@ def jdbc(mascli, instance_id, scope, jdbc_cfg_file, **kwargs):
         jdbc_cert_local_file = click.prompt("Path to certificate file", type=click.Path(exists=True))
         with open(jdbc_cert_local_file) as cFile:
             jdbc_cert_local_file_content = cFile.read()
-    #if jdbc_ssl_enabled:
-    #    jdbc_cert_local_file = kwargs["ssl_cert"]
-    #    with open(jdbc_cert_local_file) as cFile:
-    #        jdbc_cert_local_file_content = cFile.read()
     else:
         jdbc_cert_local_file_content = ""
 
@@ -121,7 +117,8 @@ def jdbc(mascli, instance_id, scope, jdbc_cfg_file, **kwargs):
     #click.echo(cfg)
     
     with open(jdbc_cfg_file, 'w') as f:
-        yaml.dump(cfg,f)
+        f.write(cfg)
+        //.dump(cfg,f)
 
 
 @cli.command()
