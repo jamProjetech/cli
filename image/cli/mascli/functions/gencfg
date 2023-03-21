@@ -115,10 +115,8 @@ def jdbc(mascli, instance_id, scope, jdbc_cfg_file, **kwargs):
         jdbc_cert_local_file_content=jdbc_cert_local_file_content,
     )
     #click.echo(cfg)
-    
     with open(jdbc_cfg_file, 'w') as f:
         f.write(cfg)
-        //.dump(cfg,f)
 
 
 @cli.command()
