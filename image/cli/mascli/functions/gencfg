@@ -112,12 +112,12 @@ def jdbc(mascli, instance_id, scope, jdbc_cfg_file, **kwargs):
         jdbc_password=jdbc_password,
 
         jdbc_ssl_enabled=jdbc_ssl_enabled,
-        jdbc_cert_local_file_content=jdbc_cert_local_file_content,
+        jdbc_cert_local_file_content=jdbc_cert_local_file_content
     )
     #click.echo(cfg)
     with open(jdbc_cfg_file, 'w') as f:
         f.write(cfg)
-
+        f.write('\n')
 
 @cli.command()
 @click.pass_obj
