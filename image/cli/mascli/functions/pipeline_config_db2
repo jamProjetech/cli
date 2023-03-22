@@ -160,6 +160,10 @@ function config_pipeline_storage_db2() {
           echo
           if [[ "$LOCAL_MAS_CONFIG_DIR_ALREADY_CHOSEN" != "yes" ]]; then
             prompt_for_input "Select Local configuration directory" LOCAL_MAS_CONFIG_DIR && export LOCAL_MAS_CONFIG_DIR
+            if [[ ! -e "$LOCAL_MAS_CONFIG_DIR" ]]; then
+              echo_warning "$LOCAL_MAS_CONFIG_DIR does not exist"
+              exit 1
+            fi
             export LOCAL_MAS_CONFIG_DIR_ALREADY_CHOSEN=yes
           fi
           jdbc_cfg_file=$LOCAL_MAS_CONFIG_DIR/jdbc-$MAS_INSTANCE_ID-wsapp.yaml
@@ -176,6 +180,10 @@ function config_pipeline_storage_db2() {
             if prompt_for_confirm "Do you want to generate a dedicated JDBC configuration for Manage?"; then
               if [[ "$LOCAL_MAS_CONFIG_DIR_ALREADY_CHOSEN" != "yes" ]]; then
                 prompt_for_input "Select Local configuration directory" LOCAL_MAS_CONFIG_DIR && export LOCAL_MAS_CONFIG_DIR
+                if [[ ! -e "$LOCAL_MAS_CONFIG_DIR" ]]; then
+                  echo_warning "$LOCAL_MAS_CONFIG_DIR does not exist"
+                  exit 1
+                fi
                 export LOCAL_MAS_CONFIG_DIR_ALREADY_CHOSEN=yes
               fi
               jdbc_cfg_file=jdbc-$LOCAL_MAS_CONFIG_DIR/jdbc-$MAS_INSTANCE_ID-wsapp.yaml
