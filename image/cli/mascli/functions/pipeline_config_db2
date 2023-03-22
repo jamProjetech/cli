@@ -137,8 +137,12 @@ function config_pipeline_storage_db2() {
       reset_colors
       if [ "$MAS_APP_CHANNEL_IOT" != "" ]; then
         if prompt_for_confirm "Do you want to generate a system JDBC configuration for the MAS install?"; then
-          prompt_for_input "Select Local configuration directory" LOCAL_MAS_CONFIG_DIR && export LOCAL_MAS_CONFIG_DIR
-          export LOCAL_MAS_CONFIG_DIR_ALREADY_CHOSEN=yes
+          prompt_for_input "Select Local configuration directory" LOCAL_MAS_CONFIG_DIR && export LOCAL_MAS_CONFIG_DIR    
+          if [[ ! -e "$LOCAL_MAS_CONFIG_DIR" ]]; then
+            echo_warning "$LOCAL_MAS_CONFIG_DIR does not exist"
+            exit 1
+          fi
+           export LOCAL_MAS_CONFIG_DIR_ALREADY_CHOSEN=yes
           jdbc_cfg_file=$LOCAL_MAS_CONFIG_DIR/jdbc-$MAS_INSTANCE_ID-system.yaml
           python3 $DIR/functions/gencfg jdbc $MAS_INSTANCE_ID system $jdbc_cfg_file
         else
