@@ -16,7 +16,7 @@
       values: ["install"]
     - input: "$(params.db2_action_manage)"
       operator: notin
-      values: ["install", "byo"]
+      values: ["byo"]
   taskRef:
     name: mas-devops-suite-db2-setup-for-manage
     kind: Task
