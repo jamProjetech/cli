@@ -5,6 +5,9 @@ when:
   - input: "$(params.fvt_digest_coreui)"
     operator: notin
     values: [""]
+  - input: "fvt-core"
+    operator: notin
+    values: ["$(params.skip[*])"]
 workspaces:
   - name: configs
     workspace: shared-configs

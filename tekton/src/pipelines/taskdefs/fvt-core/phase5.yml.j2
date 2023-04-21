@@ -1,15 +1,52 @@
 # These tests cannot be ran with anything else (~75m)
-# - CoreIDP ... both result in IDP restarts
+# - CoreIDP ......... result in IDP restarts
 # - Licensing API ... not really sure why TBH
-# - SMTP ... temporarily disables SMTP integration
+# - SMTP ............ temporarily disables SMTP integration
 
-# FVT5.1 coreidp-ldap ~10m
-- name: fvt-coreidp-ldap
-  {{ lookup('template', 'taskdefs/fvt-core/common/taskref.yml.j2') | indent(2) }}
+# FVT5.1 coreidp (multiple suites)
+- name: fvt-coreidp
+  taskRef:
+    kind: Task
+    name: mas-fvt-coreidp
+  when:
+    # We need the digests
+    - input: "$(params.fvt_digest_core)"
+      operator: notin
+      values: [""]
+    - input: "$(params.fvt_digest_coreui)"
+      operator: notin
+      values: [""]
+    # Support skip flags
+    - input: "fvt-coreidp"
+      operator: notin
+      values: ["$(params.skip[*])"]
+    - input: "fvt-core"
+      operator: notin
+      values: ["$(params.skip[*])"]
+  workspaces:
+    - name: configs
+      workspace: shared-configs
   params:
-    {{ lookup('template', 'taskdefs/fvt-core/common/params.yml.j2') | indent(4) }}
-    - name: test_suite
-      value: coreidp-ldap
+    - name: mas_instance_id
+      value: $(params.mas_instance_id)
+    - name: mas_workspace_id
+      value: $(params.mas_workspace_id)
+    - name: devops_mongo_uri
+      value: $(params.devops_mongo_uri)
+    - name: devops_build_number
+      value: $(params.devops_build_number)
+    - name: product_channel
+      value: $(params.mas_channel)
+    - name: fvt_image_registry
+      value: $(params.fvt_image_registry)
+    - name: fvt_digest_core
+      value: $(params.fvt_digest_core)
+    - name: fvt_digest_coreui
+      value: $(params.fvt_digest_coreui)
+    - name: devops_test_type
+      value: $(params.devops_test_type)
+    - name: devops_test_phase
+      value: $(params.devops_test_phase)
   runAfter:
     # Only start after all suites in phase 4 are complete
     - fvt-internalapi
@@ -19,37 +56,7 @@
     - fvt-adoptionusageapi
     - fvt-accapppoints
 
-# FVT5.2 coreidp-saml ~40m
-- name: fvt-coreidp-saml
-  {{ lookup('template', 'taskdefs/fvt-core/common/taskref.yml.j2') | indent(2) }}
-  params:
-    {{ lookup('template', 'taskdefs/fvt-core/common/params.yml.j2') | indent(4) }}
-    - name: test_suite
-      value: coreidp-saml
-  runAfter:
-    - fvt-coreidp-ldap
-
-# FVT5.3 coreidp-saml-end2end-selenium ~40m
-- name: fvt-coreidp-saml-ui
-  {{ lookup('template', 'taskdefs/fvt-core/ui/taskref.yml.j2') | indent(2) }}
-  params:
-    {{ lookup('template', 'taskdefs/fvt-core/ui/params.yml.j2') | indent(4) }}
-    - name: test_suite
-      value: coreidp-saml-ui
-  runAfter:
-    - fvt-coreidp-saml
-
-# FVT5.4 coreidp-auth ~20m - Refresh token and authentication patterns
-- name: fvt-coreidp-auth
-  {{ lookup('template', 'taskdefs/fvt-core/common/taskref.yml.j2') | indent(2) }}
-  params:
-    {{ lookup('template', 'taskdefs/fvt-core/common/params.yml.j2') | indent(4) }}
-    - name: test_suite
-      value: coreidp-auth
-  runAfter:
-    - fvt-coreidp-saml-ui
-
-# FVT5.5 licensingapi ~20m
+# FVT5.2 licensingapi ~20m
 - name: fvt-licensingapi
   {{ lookup('template', 'taskdefs/fvt-core/common/taskref.yml.j2') | indent(2) }}
   params:
@@ -57,9 +64,9 @@
     - name: test_suite
       value: licensingapi
   runAfter:
-    - fvt-coreidp-auth
+    - fvt-coreidp
 
-# FVT5.6 smtp ~5m
+# FVT5.3 smtp ~5m
 - name: fvt-smtp
   {{ lookup('template', 'taskdefs/fvt-core/common/taskref.yml.j2') | indent(2) }}
   params:
@@ -69,7 +76,7 @@
   runAfter:
     - fvt-licensingapi
 
-# FVT5.7 core-scaling ~25m
+# FVT5.4 core-scaling ~25m
 - name: fvt-core-scaling
   {{ lookup('template', 'taskdefs/fvt-core/common/taskref.yml.j2') | indent(2) }}
   params:
@@ -79,7 +86,7 @@
   runAfter:
     - fvt-smtp
 
-# FVT 5.8 operatormaturity  ~5m
+# FVT 5.5 operatormaturity  ~5m
 - name: fvt-operatormaturity
   {{ lookup('template', 'taskdefs/fvt-core/common/taskref.yml.j2') | indent(2) }}
   params:
