@@ -25,6 +25,7 @@ Worker Node Configuration (Optional, only takes effect when quota-type is set to
       --worker-count ${COLOR_YELLOW}FYRE_WORKER_COUNT${TEXT_RESET}    Number of worker nodes to provision
       --worker-cpu ${COLOR_YELLOW}FYRE_WORKER_CPU${TEXT_RESET}        How many CPUs to allocate per worker node
       --worker-memory ${COLOR_YELLOW}FYRE_WORKER_MEMORY${TEXT_RESET}  How much memory to allocate per worker node
+      --fips-enabled ${COLOR_YELLOW}OCP_FIPS_ENABLED${TEXT_RESET}     Enable Fips Encryption ("true" or "false")
 
 Other Commands:
   -s, --simulate-airgap                   Set flag to apply the simulated airgap network configuration to the cluster after provisioning
@@ -71,6 +72,9 @@ function provision_fyre_noninteractive() {
         ;;
       --worker-memory)
         FYRE_WORKER_MEMORY=$1 && shift
+        ;;
+      --fips-enabled)
+        OCP_FIPS_ENABLED=$1 && shift
         ;;
       --no-confirm)
         NO_CONFIRM=true
@@ -197,6 +201,7 @@ function provision_fyre() {
   export FYRE_WORKER_MEMORY
 
   export REGISTRY_PRIVATE_CA_FILE
+  export OCP_FIPS_ENABLED
 
   echo
   reset_colors
@@ -216,6 +221,7 @@ function provision_fyre() {
   echo_reset_dim "Name ...................... ${COLOR_MAGENTA}${CLUSTER_NAME}"
   echo_reset_dim "Description ............... ${COLOR_MAGENTA}${FYRE_CLUSTER_DESCRIPTION}"
   echo_reset_dim "OCP Version ............... ${COLOR_MAGENTA}${OCP_VERSION}"
+  echo_reset_dim "FIPS mode ................. ${COLOR_MAGENTA}${OCP_FIPS_ENABLED}"
 
   if [[ "${FYRE_QUOTA_TYPE}" == "product_group" ]]; then
     reset_colors
