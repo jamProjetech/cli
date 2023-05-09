@@ -161,6 +161,7 @@ function provision_fyre_interactive() {
   fi
 
   prompt_for_confirm "Configure networking to simulate air gap" SIMULATE_AIRGAP_NETWORK
+  prompt_for_confirm "FIPS enabled?" OCP_FIPS_ENABLED
 
   if [[ "$SIMULATE_AIRGAP_NETWORK" == "true" ]]; then
     prompt_for_input "Private Registry CA File Location" REGISTRY_PRIVATE_CA_FILE
